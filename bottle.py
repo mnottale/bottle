@@ -977,6 +977,12 @@ class Bottle(object):
         ''' Each instance of :class:'Bottle' is a WSGI application. '''
         return self.wsgi(environ, start_response)
 
+    def reverse(self, f, **parameters):
+        for route in self.routes:
+            if route.callback == f:
+                return self.router.build(route.rule, **parameters)
+        raise Exception('Reverse not found for %s.' % f)
+
 
 
 
