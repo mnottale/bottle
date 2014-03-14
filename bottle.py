@@ -2682,6 +2682,7 @@ class WSGIRefServer(ServerAdapter):
 
         srv = make_server(self.host, self.port, app, server_cls, handler_cls)
         self.port = srv.server_port
+        app.port = self.port
         srv.serve_forever()
 
 
